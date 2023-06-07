@@ -12,7 +12,6 @@ import {
   GetFormatDataReturn,
 } from '@aries-framework/core/build/modules/proofs/models/ProofServiceOptions'
 import { useAgent, useConnectionById, useProofById, useCredentials } from '@aries-framework/react-hooks'
-import startCase from 'lodash.startcase'
 import React, { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View, StyleSheet, Text, DeviceEventEmitter, FlatList } from 'react-native'
@@ -216,7 +215,7 @@ const ProofRequest: React.FC<ProofRequestProps> = ({ navigation, route }) => {
         const credNamesInAttrs = fields[proofKey].map((attr) =>
           parseCredDefFromId(attr.credentialInfo?.credentialDefinitionId, attr.credentialInfo?.schemaId)
         )
-        if (credNamesInAttrs.includes(startCase(credName))) {
+        if (credNamesInAttrs.includes(credName)) {
           credFound = true
           return
         }
