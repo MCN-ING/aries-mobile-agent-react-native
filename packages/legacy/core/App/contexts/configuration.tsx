@@ -23,6 +23,7 @@ export interface ConfigurationContext {
   pages: typeof OnboardingPages
   splash: React.FC
   terms: React.FC
+  historic: React.FC
   homeContentView: React.FC
   credentialListHeaderRight: React.FC
   credentialListOptions: React.FC

@@ -8,6 +8,7 @@ const configurationContext: ConfigurationContext = {
   pages: () => [],
   terms: () => null,
   splash: () => null,
+  historic: () => null,
   homeContentView: () => null,
   credentialListHeaderRight: () => null,
   credentialListOptions: () => null,

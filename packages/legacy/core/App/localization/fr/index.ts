@@ -442,6 +442,7 @@ const translation = {
         "Splash": "Page de garde",
         "Onboarding": "Inscription",
         "Terms": "Conditions d'utilisation",
+        "Historic": "Historique",
         "CreatePIN": "Créer un NIP à 6 chiffres",
         "EnterPIN": "Saisir le NIP",
         "Home": "Accueil",

@@ -6,6 +6,7 @@ export enum Screens {
   Splash = 'Splash',
   Onboarding = 'Onboarding',
   Terms = 'Terms',
+  Historic = 'Historic',
   CreatePIN = 'Create a PIN',
   EnterPIN = 'Enter PIN',
   Home = 'Home',
@@ -120,6 +121,7 @@ export type SettingStackParams = {
   [Screens.CreatePIN]: undefined
   [Screens.RecreatePIN]: undefined
   [Screens.Terms]: undefined
+  [Screens.Historic]: undefined
   [Screens.Onboarding]: undefined
   [Screens.Developer]: undefined
 }
