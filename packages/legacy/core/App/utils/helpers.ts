@@ -456,6 +456,13 @@ export const receiveMessageFromDeepLink = async (url: string, agent: Agent | und
   return message
 }
 
+export const normalizeInvitationUri = (uri: string) => {
+  const regexStartUri = /(http:\/\/|https:\/\/)/
+  const matches = uri.match(regexStartUri)
+  const normalizeUri = uri.substring(matches?.index ?? 0, uri.length)
+  return normalizeUri
+}
+
 /**
  *
  * @param uri a URI containing a base64 encoded connection invite in the query parameter
@@ -463,7 +470,7 @@ export const receiveMessageFromDeepLink = async (url: string, agent: Agent | und
  * @returns a connection record from parsing and receiving the invitation
  */
 export const connectFromInvitation = async (uri: string, agent: Agent | undefined) => {
-  const invitation = await agent?.oob.parseInvitation(uri)
+  const invitation = await agent?.oob.parseInvitation(normalizeInvitationUri(uri))
 
   if (!invitation) {
     throw new Error('Could not parse invitation from URL')
