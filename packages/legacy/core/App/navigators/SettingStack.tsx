@@ -24,7 +24,7 @@ const SettingStack: React.FC = () => {
   const theme = useTheme()
   const [biometryUpdatePending, setBiometryUpdatePending] = useState<boolean>(false)
   const { t } = useTranslation()
-  const { pages, terms, developer } = useConfiguration()
+  const { pages, terms, developer, historic } = useConfiguration()
   const defaultStackOptions = createDefaultStackOptions(theme)
   const OnboardingTheme = theme.OnboardingTheme
   const carousel = createCarouselStyle(OnboardingTheme)
@@ -79,6 +79,11 @@ const SettingStack: React.FC = () => {
         name={Screens.Terms}
         component={terms}
         options={{ title: t('Screens.Terms'), headerBackTestID: testIdWithKey('Back') }}
+      />
+      <Stack.Screen
+        name={Screens.Historic}
+        component={historic}
+        options={{ title: t('Screens.Historic'), headerBackTestID: testIdWithKey('Back') }}
       />
       <Stack.Screen
         name={Screens.Developer}

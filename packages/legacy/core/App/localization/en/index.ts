@@ -464,6 +464,7 @@ const translation = {
     "Splash": "Splash",
     "Onboarding": "Onboarding",
     "Terms": "Terms & Conditions",
+    "Historic": "Historic",
     "CreatePIN": "Create a PIN",
     "EnterPIN": "Enter PIN",
     "Home": "Notifications",

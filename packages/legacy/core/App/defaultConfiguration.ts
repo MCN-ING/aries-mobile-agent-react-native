@@ -20,6 +20,7 @@ export const defaultConfiguration: ConfigurationContext = {
   pages: OnboardingPages,
   splash: Splash,
   terms: Terms,
+  historic: () => null,
   developer: Developer,
   homeContentView: HomeContentView,
   credentialListHeaderRight: () => null,
