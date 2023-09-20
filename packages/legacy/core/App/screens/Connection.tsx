@@ -146,7 +146,7 @@ const Connection: React.FC<ConnectionProps> = ({ navigation, route }) => {
 
     if (
       connectionId &&
-      state.notificationRecord &&
+      oobRecord &&
       (!goalCode || (!goalCode.startsWith('aries.vc.verify') && !goalCode.startsWith('aries.vc.issue')))
     ) {
       // No goal code, we don't know what to expect next,
@@ -165,7 +165,7 @@ const Connection: React.FC<ConnectionProps> = ({ navigation, route }) => {
     if (state.notificationRecord && goalCode) {
       goalCodeAction(goalCode)()
     }
-  }, [connection, goalCode, state.notificationRecord])
+  }, [connection, oobRecord, goalCode, state.notificationRecord])
 
   useMemo(() => {
     startTimer()
