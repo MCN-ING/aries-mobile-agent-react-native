@@ -101,13 +101,9 @@ const CredentialCard11: React.FC<CredentialCard11Props> = ({
   const cardData = [...(displayItems ?? []), primaryField, secondaryField]
 
   const getSecondaryBackgroundColor = () => {
-    if (proof) {
-      return overlay.brandingOverlay?.primaryBackgroundColor
-    } else {
-      return overlay.brandingOverlay?.backgroundImageSlice
-        ? 'rgba(0, 0, 0, 0)'
-        : overlay.brandingOverlay?.secondaryBackgroundColor
-    }
+    return overlay.brandingOverlay?.backgroundImageSlice
+      ? 'rgba(0, 0, 0, 0)'
+      : overlay.brandingOverlay?.secondaryBackgroundColor
   }
 
   const [dimensions, setDimensions] = useState({ cardWidth: 0, cardHeight: 0 })
