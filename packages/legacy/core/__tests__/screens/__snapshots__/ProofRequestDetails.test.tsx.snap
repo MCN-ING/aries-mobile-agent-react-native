@@ -35,15 +35,35 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
         Object {
           "requestedAttributes": Array [
             Object {
-              "name": "student_first_name",
+              "devRestrictions": Array [
+                Object {
+                  "schema_name": "student_card",
+                },
+              ],
+              "names": Array [
+                "student_first_name",
+                "student_last_name",
+              ],
+              "non_revoked": Object {
+                "to": "@{now}",
+              },
               "restrictions": Array [
                 Object {
                   "cred_def_id": "XUxBrVSALWHLeycAUhrNr9:3:CL:26293:student_card",
                 },
               ],
             },
+          ],
+          "requestedPredicates": Array [
             Object {
-              "name": "student_last_name",
+              "devRestrictions": Array [
+                Object {
+                  "schema_name": "student_card",
+                },
+              ],
+              "name": "expiry_date",
+              "predicateType": ">=",
+              "predicateValue": "@{currentDate(0)}",
               "restrictions": Array [
                 Object {
                   "cred_def_id": "XUxBrVSALWHLeycAUhrNr9:3:CL:26293:student_card",
@@ -78,6 +98,7 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
   >
     <View>
       <View
+        collapsable={false}
         onLayout={[Function]}
       >
         <View
@@ -113,6 +134,7 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
         </View>
       </View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={null}
       >
@@ -205,6 +227,7 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
             viewabilityConfigCallbackPairs={Array []}
           >
             <View
+              onFocusCapture={[Function]}
               onLayout={[Function]}
               style={null}
             >
@@ -212,6 +235,7 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
                 style={
                   Object {
                     "flexDirection": "row",
+                    "paddingVertical": 8,
                   }
                 }
               >
@@ -222,7 +246,6 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
                       "fontSize": 18,
                       "fontWeight": "bold",
                       "marginRight": 8,
-                      "paddingVertical": 8,
                     }
                   }
                 >
@@ -242,7 +265,6 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
                         "fontSize": 18,
                         "fontWeight": "bold",
                         "marginRight": 8,
-                        "paddingVertical": 8,
                       }
                     }
                   >
@@ -255,7 +277,6 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
                         "fontSize": 18,
                         "fontWeight": "bold",
                         "marginRight": 8,
-                        "paddingVertical": 8,
                       }
                     }
                   />
@@ -263,6 +284,7 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
               </View>
             </View>
             <View
+              onFocusCapture={[Function]}
               onLayout={[Function]}
               style={null}
             >
@@ -270,6 +292,7 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
                 style={
                   Object {
                     "flexDirection": "row",
+                    "paddingVertical": 8,
                   }
                 }
               >
@@ -280,7 +303,6 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
                       "fontSize": 18,
                       "fontWeight": "bold",
                       "marginRight": 8,
-                      "paddingVertical": 8,
                     }
                   }
                 >
@@ -300,7 +322,6 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
                         "fontSize": 18,
                         "fontWeight": "bold",
                         "marginRight": 8,
-                        "paddingVertical": 8,
                       }
                     }
                   >
@@ -313,20 +334,12 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
                         "fontSize": 18,
                         "fontWeight": "bold",
                         "marginRight": 8,
-                        "paddingVertical": 8,
                       }
                     }
                   />
                 </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "height": 0,
-                }
-              }
-            />
           </View>
         </View>
       </View>
@@ -353,13 +366,24 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
               accessibilityRole="button"
               accessibilityState={
                 Object {
+                  "busy": undefined,
+                  "checked": undefined,
                   "disabled": false,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                Object {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
                 }
               }
               accessible={true}
               collapsable={false}
               focusable={true}
-              nativeID="animatedComponent"
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -419,13 +443,24 @@ exports[`ProofRequestDetails Component Renders correctly 1`] = `
               accessibilityRole="button"
               accessibilityState={
                 Object {
+                  "busy": undefined,
+                  "checked": undefined,
                   "disabled": false,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                Object {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
                 }
               }
               accessible={true}
               collapsable={false}
               focusable={true}
-              nativeID="animatedComponent"
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}

@@ -10,12 +10,14 @@ import * as components from './components'
 import Button, { ButtonType } from './components/buttons/Button'
 import HeaderButton, { ButtonLocation } from './components/buttons/HeaderButton'
 import CheckBoxRow from './components/inputs/CheckBoxRow'
+import ContentGradient from './components/misc/ContentGradient'
 import CredentialCard from './components/misc/CredentialCard'
 import InfoBox, { InfoBoxType } from './components/misc/InfoBox'
 import ErrorModal from './components/modals/ErrorModal'
 import NetInfo from './components/network/NetInfo'
 import Record from './components/record/Record'
 import InfoTextBox from './components/texts/InfoTextBox'
+import Link from './components/texts/Link'
 import { ToastType } from './components/toast/BaseToast'
 import toastConfig from './components/toast/ToastConfig'
 import { AttachTourStep } from './components/tour/AttachTourStep'
@@ -36,13 +38,14 @@ import RootStack from './navigators/RootStack'
 import AttemptLockout from './screens/AttemptLockout'
 import Developer from './screens/Developer'
 import OnboardingPages from './screens/OnboardingPages'
+import Preface from './screens/Preface'
 import Splash from './screens/Splash'
 import Terms from './screens/Terms'
 import UseBiometry from './screens/UseBiometry'
 import * as types from './types'
 
 export { LocalStorageKeys } from './constants'
-export { initLanguages, initStoredLanguage, translationResources } from './localization'
+export { initLanguages, initStoredLanguage, translationResources, Locales } from './localization'
 export { ConfigurationProvider, useConfiguration } from './contexts/configuration'
 export { defaultState, mergeReducers, StoreProvider, StoreContext, useStore } from './contexts/store'
 export { default as Store, DispatchAction, reducer } from './contexts/reducers/store'
@@ -54,7 +57,7 @@ export { animatedComponents } from './animated-components'
 export { theme } from './theme'
 export { useAuth } from './contexts/auth'
 export { NavigationTheme } from './theme'
-export { testIdWithKey } from './utils/testable'
+export { testIdWithKey, testIdForAccessabilityLabel } from './utils/testable'
 export { Screens, Stacks, TabStacks } from './types/navigators'
 export { createStyles } from './screens/OnboardingPages'
 export { statusBarStyleForColor, StatusBarStyles } from './utils/luminance'
@@ -116,10 +119,12 @@ export {
   ButtonLocation,
   CheckBoxRow,
   CredentialCard,
+  ContentGradient,
   ErrorModal,
   InfoTextBox,
   InfoBox,
   InfoBoxType,
+  Link,
   ToastType,
   toastConfig,
   RootStack,
@@ -128,6 +133,7 @@ export {
   Splash,
   Developer,
   Terms,
+  Preface,
   HomeFooterView as HomeContentView,
   UseBiometry,
   AttemptLockout,

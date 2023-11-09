@@ -6,6 +6,7 @@ export enum Screens {
   Splash = 'Splash',
   Onboarding = 'Onboarding',
   Terms = 'Terms',
+  Preface = 'Preface',
   CreatePIN = 'Create a PIN',
   EnterPIN = 'Enter PIN',
   Home = 'Home',
@@ -30,10 +31,12 @@ export enum Screens {
   UseBiometry = 'Use Biometry',
   Developer = 'Developer',
   CustomNotification = 'Custom Notification',
+  ProofChangeCredential = 'Choose a credential',
   ProofRequests = 'Proof Requests',
   ProofRequesting = 'Proof Requesting',
   ProofDetails = 'Proof Details',
   NameWallet = 'Name Wallet',
+  RenameContact = 'Rename Contact',
 }
 
 export enum Stacks {
@@ -72,6 +75,7 @@ export type TabStackParams = {
 }
 
 export type AuthenticateStackParams = {
+  [Screens.Preface]: undefined
   [Screens.Onboarding]: undefined
   [Screens.Terms]: undefined
   [Screens.AttemptLockout]: undefined
@@ -90,6 +94,7 @@ export type ContactStackParams = {
   [Screens.Contacts]: undefined
   [Screens.Chat]: { connectionId: string }
   [Screens.ContactDetails]: { connectionId: string }
+  [Screens.RenameContact]: { connectionId: string }
   [Screens.WhatAreContacts]: undefined
   [Screens.CredentialDetails]: { credentialId: string }
   [Screens.CredentialOffer]: { credentialId: string }
@@ -103,6 +108,12 @@ export type ProofRequestsStackParams = {
   [Screens.ProofDetails]: { recordId: string; isHistory?: boolean; senderReview?: boolean }
   [Screens.ProofRequestDetails]: { templateId: string; connectionId?: string }
   [Screens.ProofRequestUsageHistory]: { templateId: string }
+  [Screens.ProofChangeCredential]: {
+    selectedCred: string
+    altCredentials: string[]
+    proofId: string
+    onCredChange: (arg: string) => void
+  }
 }
 
 export type CredentialStackParams = {

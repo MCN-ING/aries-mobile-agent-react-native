@@ -15,6 +15,7 @@ import { generateRandomWalletName } from '../../utils/helpers'
 
 enum OnboardingDispatchAction {
   ONBOARDING_UPDATED = 'onboarding/onboardingStateLoaded',
+  DID_SEE_PREFACE = 'onboarding/didSeePreface',
   DID_COMPLETE_TUTORIAL = 'onboarding/didCompleteTutorial',
   DID_AGREE_TO_TERMS = 'onboarding/didAgreeToTerms',
   DID_CREATE_PIN = 'onboarding/didCreatePIN',
@@ -46,6 +47,7 @@ enum PreferencesDispatchAction {
   ACCEPT_DEV_CREDENTIALS = 'preferences/acceptDevCredentials',
   USE_DATA_RETENTION = 'preferences/useDataRetention',
   PREVENT_AUTO_LOCK = 'preferences/preventAutoLock',
+  UPDATE_ALTERNATE_CONTACT_NAMES = 'preferences/updateAlternateContactNames',
 }
 
 enum ToursDispatchAction {
@@ -212,6 +214,10 @@ export const reducer = <S extends State>(state: S, action: ReducerAction<Dispatc
         preferences.useDataRetention = true
       }
 
+      if (!preferences.alternateContactNames) {
+        preferences.alternateContactNames = {}
+      }
+
       return {
         ...state,
         preferences,
@@ -254,6 +260,24 @@ export const reducer = <S extends State>(state: S, action: ReducerAction<Dispatc
         ...state,
         preferences,
       }
+    }
+    case PreferencesDispatchAction.UPDATE_ALTERNATE_CONTACT_NAMES: {
+      const idNamePair = (action?.payload ?? []).pop() ?? {}
+      const preferences = {
+        ...state.preferences,
+        alternateContactNames: {
+          ...state.preferences.alternateContactNames,
+          ...idNamePair,
+        },
+      }
+      const newState = {
+        ...state,
+        preferences,
+      }
+
+      AsyncStorage.setItem(LocalStorageKeys.Preferences, JSON.stringify(preferences))
+
+      return newState
     }
     case ToursDispatchAction.UPDATE_SEEN_TOUR_PROMPT: {
       const seenToursPrompt: ToursState = (action?.payload ?? []).pop() ?? false
@@ -407,6 +431,18 @@ export const reducer = <S extends State>(state: S, action: ReducerAction<Dispatc
         ...state,
         onboarding,
       }
+    }
+    case OnboardingDispatchAction.DID_SEE_PREFACE: {
+      const onboarding = {
+        ...state.onboarding,
+        didSeePreface: true,
+      }
+      const newState = {
+        ...state,
+        onboarding,
+      }
+      AsyncStorage.setItem(LocalStorageKeys.Onboarding, JSON.stringify(newState.onboarding))
+      return newState
     }
     case OnboardingDispatchAction.DID_COMPLETE_TUTORIAL: {
       const onboarding = {

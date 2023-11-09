@@ -72,9 +72,9 @@ const translation = {
     "JustNow": "Agora",
   },
   "Language": {
-    "English": "Inglês",
-    "French": "Francês",
-    "Portuguese": "Português",
+    "code_en": "Inglês",
+    "code_fr": "Francês",
+    "code_pt-BR": "Português",
   },
   "Error": {
     "Unknown": "Erro Desconhecido",
@@ -391,12 +391,22 @@ const translation = {
     "CustomOfferParagraph2": "Não reconhece a organização. Verifique sua lista de Contatos. Você só recebe notificões de Contatos que você tenha adicionado.",
   },
   "ProofRequest": {
+    "FromYourWallet": "From your wallet (PB)",
+    "MissingCredentials": "Missing credentials (PB)",
+    "PredicateGeDate": "é posterior a",
+    "PredicateLeDate": "é anterior a",
+    "PredicateGe": "é maior ou igual a",
+    "PredicateGr": "é maior que",
+    "PredicateLe": "é menor ou igual a",
+    "PredicateLs": "é menor que",
     "ProofRequest": "Requisição de Prova",
     "RequestProcessing": "Só um momento...",
     "OfferDelay": "Atrasar oferta",
+    "ChangeCredential": "Escolher credencial",
     "RejectThisProof?": "Rejeitar esta Requisição de Prova?",
     "DeclineThisProof?": "Recusar esta Requisição de Prova?",
     "AcceptingProof": "Aceitando Prova",
+    "MultipleCredentials": "Você tem múltiplas credenciais para escolher:",
     "SuccessfullyAcceptedProof": "Prova Aceita com Sucesso",
     "SensitiveInformation": "This request is asking for sensitive information. (PB)",
     "ProofRequestNotFound": "Requisição de Prova não encontrada.",
@@ -472,6 +482,7 @@ const translation = {
   "Screens": {
     "Splash": "Splash",
     "Onboarding": "Onboarding",
+    "Preface": "Aries Bifold",
     "Terms": "Termos & Condições",
     "CreatePIN": "Criar um PIN",
     "EnterPIN": "Digitar o PIN",
@@ -482,6 +493,7 @@ const translation = {
     "Notifications": "Notificações",
     "CredentialOffer": "Oferta de Credencial",
     "ProofRequest": "Requisição de Prova",
+    "ProofChangeCredential": "Escolha uma credencial",
     "ProofRequestDetails": "Detalhes Da Solicitação De Comprovação",
     "ProofRequestAttributeDetails": "Atributos de Requisição de Prova",
     "ProofDetails": "Detalhes da prova",
@@ -501,6 +513,7 @@ const translation = {
     "ProofRequestUsageHistory": "Histórico de uso",
     "CreateConnectionInvitation": "Criar um convite de conexão",
     "NameWallet": "Nomear sua carteira",
+    "RenameContact": "Edit Contact Name (PT-BR)",
   },
   "Loading": {
     "TakingTooLong": "Isso esta demorando mais que o normal. Você pode voltar para a home ou continuar esperando.",
@@ -517,6 +530,10 @@ const translation = {
     "EmptyNameTitle": "O nome de sua carteira não pode ser vazio",
     "EmptyNameDescription": "Este é o nome que as pessoas verão quando se conerctar a você. Por favor, digite o nome da carteira.",
   },
+  "RenameContact": {
+    "ThisContactName": "This contact name is only displayed in your Contacts List. (PT-BR)",
+    "ContactName": "Contact name (PT-BR)",
+  },
   "NetInfo": {
     "NoInternetConnectionTitle": "Sem conexão com a internet",
     "NoInternetConnectionMessage": "Não é possivel acessar serviços utilizando a Bifold ou receber credenciais até você voltar a estar online.\n\nFavor checkar sua conexão com a internet.",
@@ -525,6 +542,11 @@ const translation = {
   },
   "Onboarding": {
     "SkipA11y": "Pular introdução a Aries Bifold",
+  },
+  "Preface": {
+    "PrimaryHeading": "Is this app for you? (PT-BR)",
+    "Paragraph1": "Most people will not have a need for Aries Bifold because very few digital credentials are currently available. (PT-BR)",
+    "Confirmed": "I have confirmed that this app is for me. (PT-BR)",
   },
   "Chat": {
     "OpenPresentation": "Abrir apresentação",

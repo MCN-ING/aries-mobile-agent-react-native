@@ -1,10 +1,13 @@
-import { useAgent } from '@aries-framework/react-hooks'
+import { ProofState } from '@aries-framework/core'
+import { useAgent, useProofByState } from '@aries-framework/react-hooks'
 import { useNavigation } from '@react-navigation/core'
 import { createStackNavigator, StackCardStyleInterpolator, StackNavigationProp } from '@react-navigation/stack'
+import { parseUrl } from 'query-string'
 import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AppState, DeviceEventEmitter } from 'react-native'
 
+import { ProofCustomMetadata, ProofMetadata } from '../../verifier'
 import HeaderButton, { ButtonLocation } from '../components/buttons/HeaderButton'
 import { EventTypes, walletTimeout } from '../constants'
 import { useAuth } from '../contexts/auth'
@@ -47,8 +50,30 @@ const RootStack: React.FC = () => {
   const theme = useTheme()
   const defaultStackOptions = createDefaultStackOptions(theme)
   const OnboardingTheme = theme.OnboardingTheme
-  const { pages, terms, splash, useBiometry, developer } = useConfiguration()
+  const {
+    pages,
+    terms,
+    splash,
+    useBiometry,
+    developer,
+    preface,
+    showPreface,
+    enableImplicitInvitations,
+    enableReuseConnections,
+  } = useConfiguration()
   useDeepLinks()
+
+  // remove connection on mobile verifier proofs if proof is rejected regardless of if it has been opened
+  const declinedProofs = useProofByState([ProofState.Declined, ProofState.Abandoned])
+  useEffect(() => {
+    declinedProofs.forEach((proof) => {
+      const meta = proof?.metadata?.get(ProofMetadata.customMetadata) as ProofCustomMetadata
+      if (meta?.delete_conn_after_seen) {
+        agent?.connections.deleteById(proof?.connectionId ?? '').catch(() => {})
+        proof?.metadata.set(ProofMetadata.customMetadata, { ...meta, delete_conn_after_seen: false })
+      }
+    })
+  }, [declinedProofs, state.preferences.useDataRetention])
 
   const lockoutUser = async () => {
     if (agent && state.authentication.didAuthenticate) {
@@ -81,14 +106,29 @@ const RootStack: React.FC = () => {
 
       try {
         // Try connection based
-        const connectionRecord = await connectFromInvitation(deepLink, agent)
+        const receivedInvitation = await connectFromInvitation(
+          deepLink,
+          agent,
+          enableImplicitInvitations,
+          enableReuseConnections
+        )
         navigation.navigate(Stacks.ConnectionStack as any, {
           screen: Screens.Connection,
-          params: { connectionId: connectionRecord.id },
+          params: { connectionId: receivedInvitation?.connectionRecord?.id },
         })
       } catch {
         try {
           // Try connectionless here
+          const queryParams = parseUrl(deepLink).query
+          const param = queryParams['d_m'] ?? queryParams['c_i']
+          // if missing both of the required params, don't attempt to open OOB
+          if (!param) {
+            dispatch({
+              type: DispatchAction.ACTIVE_DEEP_LINK,
+              payload: [undefined],
+            })
+            return
+          }
           const message = await getOobDeepLink(deepLink, agent)
           navigation.navigate(Stacks.ConnectionStack as any, {
             screen: Screens.Connection,
@@ -250,6 +290,11 @@ const RootStack: React.FC = () => {
       <Stack.Navigator initialRouteName={Screens.Splash} screenOptions={{ ...defaultStackOptions, headerShown: false }}>
         <Stack.Screen name={Screens.Splash} component={splash} />
         <Stack.Screen
+          name={Screens.Preface}
+          component={preface}
+          options={{ title: t('Screens.Preface'), headerShown: true }}
+        />
+        <Stack.Screen
           name={Screens.Onboarding}
           options={() => ({
             title: t('Screens.Onboarding'),
@@ -323,6 +368,7 @@ const RootStack: React.FC = () => {
   }
 
   if (
+    (!showPreface || state.onboarding.didSeePreface) &&
     state.onboarding.didAgreeToTerms &&
     state.onboarding.didCompleteTutorial &&
     state.onboarding.didCreatePIN &&

@@ -48,6 +48,7 @@ exports[`Settings Screen Renders correctly 1`] = `
               "style": Object {
                 "color": "#42803E",
               },
+              "testID": "com.ariesbifold:id/EditWalletName",
             },
             "title": "Screens.Contacts",
           },
@@ -73,7 +74,7 @@ exports[`Settings Screen Renders correctly 1`] = `
               "onPress": [Function],
               "testID": "com.ariesbifold:id/Language",
               "title": "Settings.Language",
-              "value": "Language.English",
+              "value": "Language.code_en",
             },
             Object {
               "accessibilityLabel": "Settings.Developer",
@@ -107,6 +108,7 @@ exports[`Settings Screen Renders correctly 1`] = `
   >
     <View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={null}
       >
@@ -132,6 +134,7 @@ exports[`Settings Screen Renders correctly 1`] = `
             accessible={false}
             allowFontScaling={false}
             importantForAccessibility="no-hide-descendants"
+            selectable={false}
             style={
               Array [
                 Object {
@@ -173,6 +176,7 @@ exports[`Settings Screen Renders correctly 1`] = `
         </View>
       </View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={null}
       >
@@ -204,10 +208,26 @@ exports[`Settings Screen Renders correctly 1`] = `
             <View>
               <View
                 accessibilityLabel="Screens.Contacts"
+                accessibilityState={
+                  Object {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  Object {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -284,6 +304,7 @@ exports[`Settings Screen Renders correctly 1`] = `
         </View>
       </View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={null}
       >
@@ -306,10 +327,26 @@ exports[`Settings Screen Renders correctly 1`] = `
             <View>
               <View
                 accessibilityLabel="Settings.WhatAreContacts"
+                accessibilityState={
+                  Object {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  Object {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -376,10 +413,12 @@ exports[`Settings Screen Renders correctly 1`] = `
         </View>
       </View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={null}
       />
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={null}
       >
@@ -405,6 +444,7 @@ exports[`Settings Screen Renders correctly 1`] = `
             accessible={false}
             allowFontScaling={false}
             importantForAccessibility="no-hide-descendants"
+            selectable={false}
             style={
               Array [
                 Object {
@@ -446,6 +486,7 @@ exports[`Settings Screen Renders correctly 1`] = `
         </View>
       </View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={null}
       >
@@ -477,10 +518,26 @@ exports[`Settings Screen Renders correctly 1`] = `
             <View>
               <View
                 accessibilityLabel="Global.Biometrics"
+                accessibilityState={
+                  Object {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  Object {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -559,6 +616,7 @@ exports[`Settings Screen Renders correctly 1`] = `
         </View>
       </View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={null}
       >
@@ -581,10 +639,26 @@ exports[`Settings Screen Renders correctly 1`] = `
             <View>
               <View
                 accessibilityLabel="Settings.ChangePin"
+                accessibilityState={
+                  Object {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  Object {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -661,6 +735,7 @@ exports[`Settings Screen Renders correctly 1`] = `
         </View>
       </View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={null}
       >
@@ -683,10 +758,26 @@ exports[`Settings Screen Renders correctly 1`] = `
             <View>
               <View
                 accessibilityLabel="Settings.Language"
+                accessibilityState={
+                  Object {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  Object {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -738,7 +829,7 @@ exports[`Settings Screen Renders correctly 1`] = `
                     ]
                   }
                 >
-                  Language.English
+                  Language.code_en
                 </Text>
               </View>
             </View>
@@ -765,6 +856,7 @@ exports[`Settings Screen Renders correctly 1`] = `
         </View>
       </View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={null}
       >
@@ -787,10 +879,26 @@ exports[`Settings Screen Renders correctly 1`] = `
             <View>
               <View
                 accessibilityLabel="Settings.Developer"
+                accessibilityState={
+                  Object {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  Object {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -857,6 +965,7 @@ exports[`Settings Screen Renders correctly 1`] = `
         </View>
       </View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={null}
       />
@@ -874,7 +983,11 @@ exports[`Settings Screen Renders correctly 1`] = `
           <View
             accessibilityState={
               Object {
+                "busy": undefined,
+                "checked": undefined,
                 "disabled": true,
+                "expanded": undefined,
+                "selected": undefined,
               }
             }
             accessible={true}

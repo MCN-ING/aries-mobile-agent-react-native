@@ -7,13 +7,14 @@ import _defaultReducer, { ReducerAction } from './reducers/store'
 
 type Reducer = <S extends State>(state: S, action: ReducerAction<any>) => S
 
-interface StoreProviderProps {
+interface StoreProviderProps extends React.PropsWithChildren {
   initialState?: State
   reducer?: Reducer
 }
 
 export const defaultState: State = {
   onboarding: {
+    didSeePreface: false,
     didAgreeToTerms: false,
     didCompleteTutorial: false,
     didCreatePIN: false,
@@ -47,6 +48,7 @@ export const defaultState: State = {
     enableWalletNaming: false,
     walletName: generateRandomWalletName(),
     preventAutoLock: false,
+    alternateContactNames: {},
   },
   tours: {
     seenToursPrompt: false,

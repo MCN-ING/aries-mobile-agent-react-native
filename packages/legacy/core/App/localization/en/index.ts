@@ -73,9 +73,9 @@ const translation = {
     "JustNow": "Just now",
   },
   "Language": {
-    "English": "English",
-    "French": "French",
-    "Portuguese": "Portuguese",
+    "code_en": "English",
+    "code_fr": "French",
+    "code_pt-BR": "Portuguese",
   },
   "Error": {
     "Unknown": "Unknown Error",
@@ -411,11 +411,21 @@ const translation = {
     "DeleteOfferDescription": "Don't recognize the organization? Check your Contacts list. You only receive notifications from Contacts you've initiated",
   },
   "ProofRequest": {
+    "FromYourWallet": "From your wallet",
+    "MissingCredentials": "Missing credentials",
+    "PredicateGeDate": "is after",
+    "PredicateLeDate": "is before",
+    "PredicateGe": "is greater than or equal to",
+    "PredicateGr": "is greater than",
+    "PredicateLe": "is less than or equal to",
+    "PredicateLs": "is less than",
     "ProofRequest": "Proof Request",
     "RequestProcessing": "Just a moment...",
     "OfferDelay": "Offer delay",
+    "ChangeCredential": "Change credential",
     "RejectThisProof?": "Reject this Proof Request?",
     "DeclineThisProof?": "Decline this Proof Request?",
+    "MultipleCredentials": "You have multiple credentials to choose from:",
     "AcceptingProof": "Accepting Proof",
     "SuccessfullyAcceptedProof": "Successfully Accepted Proof",
     "SensitiveInformation": "This request is asking for sensitive information.",
@@ -425,7 +435,7 @@ const translation = {
     "ProofRejected": "Proof Rejected",
     "RequestedCredentialsCouldNotBeFound": "Requested credentials could not be found",
     "NewProofRequest": "New Proof Request",
-    "NotAvailableInYourWallet": "Not available",
+    "NotAvailableInYourWallet": "Not in your wallet",
     "PredicateNotSatisfied": "Requirement not met",
     "IsRequesting": "is requesting",
     "IsRequestingSomethingYouDontHaveAvailable": "is requesting something you don't have available",
@@ -445,8 +455,10 @@ const translation = {
     "AbortDecline": "No, go back",
     "DeclineTitle": "Decline proof request?",
     "Declined": "Declined",
+    "ReviewSentInformation": "You shared the following information from {{count}} credentials with", // this exists to make typescript happy
     "ReviewSentInformation_one": "You shared the following information from {{count}} credential with",
     "ReviewSentInformation_other": "You shared the following information from {{count}} credentials with",
+    "ShareFollowingInformation": "is sharing the following information from {{count}} credentials.", // this exists to make typescript happy
     "ShareFollowingInformation_one": "is sharing the following information from {{count}} credential.",
     "ShareFollowingInformation_other": "is sharing the following information from {{count}} credentials.",
     "DeclineBulletPoint1": "Organizations and services require that you prove you're eligible to continue with their service or access.",
@@ -500,6 +512,7 @@ const translation = {
   "Screens": {
     "Splash": "Splash",
     "Onboarding": "Onboarding",
+    "Preface": "Aries Bifold",
     "Terms": "Terms & Conditions",
     "CreatePIN": "Create a PIN",
     "EnterPIN": "Enter PIN",
@@ -509,6 +522,7 @@ const translation = {
     "CredentialDetails": "Credential Details",
     "Notifications": "Notifications",
     "CredentialOffer": "Credential Offer",
+    "ProofChangeCredential": "Choose a credential",
     "ProofRequest": "Proof Request",
     "ProofRequestDetails": "Proof Request Details",
     "ProofRequestAttributeDetails": "Proof Request Attribute Details",
@@ -536,6 +550,7 @@ const translation = {
     "CustomNotification": 'Custom Notification',
     "ProofRequesting": 'Proof Requesting',
     "NameWallet": "Name your wallet",
+    "RenameContact": "Edit Contact Name",
   },
   "Loading": {
     "TakingTooLong": "This is taking longer than usual. You can return to home or continue waiting.",
@@ -552,6 +567,14 @@ const translation = {
     "EmptyNameTitle": "Wallet name can't be empty",
     "EmptyNameDescription": "This is the name people see when connecting with you.\n\nPlease enter a wallet name.",
   },
+  "RenameContact": {
+    "ThisContactName": "This contact name is only displayed in your Contacts List.",
+    "ContactName": "Contact name",
+    "CharCountTitle": "Character count exceeded",
+    "CharCountDescription": "You've exceeded the maximum character count of 50 characters. Please reduce your character count.",
+    "EmptyNameTitle": "Contact name can't be empty",
+    "EmptyNameDescription": "This is the name you will see for this Contact in your Contacts list.\n\nPlease enter a contact name.",
+  },
   "NetInfo": {
     "NoInternetConnectionTitle": "No internet connection",
     "NoInternetConnectionMessage": "You're unable to access services using Bifold or receive credentials until you're back online.\n\nPlease check your internet connection.",
@@ -560,6 +583,11 @@ const translation = {
   },
   "Onboarding": {
     "SkipA11y": "Skip introduction to Aries Bifold",
+  },
+  "Preface": {
+    "PrimaryHeading": "Is this app for you?",
+    "Paragraph1": "Most people will not have a need for Aries Bifold because very few digital credentials are currently available.",
+    "Confirmed": "I have confirmed that this app is for me.",
   },
   "Chat": {
     "OpenPresentation": "Open presentation",

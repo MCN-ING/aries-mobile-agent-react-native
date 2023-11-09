@@ -73,9 +73,9 @@ const translation = {
         "JustNow": "Just now (FR)",
     },
     "Language": {
-        "English": "Anglais",
-        "French": "Français",
-        "Portuguese": "Portugais",
+        "code_en": "Anglais",
+        "code_fr": "Français",
+        "code_pt-BR": "Portugais",
     },
     "Error": {
         "Unknown": "Erreur inconnue",
@@ -409,11 +409,21 @@ const translation = {
         "CustomOfferParagraph2": "Vous ne reconnaissez pas l'organisation? Vérifiez votre liste de Contacts. Vous ne recevez des notifications que des Contacts que vous avez initiés."
     },
     "ProofRequest": {
+        "FromYourWallet": "From your wallet (FR)",
+        "MissingCredentials": "Missing credentials (FR)",
+        "PredicateGeDate": "is after (FR)",
+        "PredicateLeDate": "is before (FR)",
+        "PredicateGe": "is greater than or equal to (FR)",
+        "PredicateGr": "is greater than (FR)",
+        "PredicateLe": "is less than or equal to (FR)",
+        "PredicateLs": "is less than (FR)",
         "ProofRequest": "Demande de preuve",
         "RequestProcessing": "Juste un instant...",
         "OfferDelay": "Retard de l'offre",
+        "ChangeCredential": "Change credential (FR)",
         "RejectThisProof?": "Rejeter cette preuve?",
         "AcceptingProof": "Acceptation de la preuve",
+        "MultipleCredentials": "You have multiple credentials to choose from: (FR)",
         "SuccessfullyAcceptedProof": "Preuve acceptée avec succès",
         "SensitiveInformation": "This request is asking for sensitive information. (FR)",
         "RejectingProof": "Rejet de la preuve",
@@ -489,6 +499,7 @@ const translation = {
     "Screens": {
         "Splash": "Page de garde",
         "Onboarding": "Inscription",
+        "Preface": "Aries Bifold",
         "Terms": "Conditions d'utilisation",
         "CreatePIN": "Créer un NIP à 6 chiffres",
         "EnterPIN": "Saisir le NIP",
@@ -498,6 +509,7 @@ const translation = {
         "CredentialDetails": "Détails des justificatifs",
         "Notifications": "Notifications",
         "CredentialOffer": "Offre de justificatif",
+        "ProofChangeCredential": "Choose a credential (FR)",
         "ProofRequest": "Demande de preuve",
         "ProofRequestAttributeDetails": "Détails des attributs de la demande de preuve",
         "ProofDetails": "Détails de la preuve",
@@ -524,7 +536,8 @@ const translation = {
         "UseBiometry": 'Utiliser la biométrie',
         "CustomNotification": 'Notification personnalisée',
         "ProofRequesting": 'Demande de preuve',
-        "NameWallet": "Name your wallet (FR)"
+        "NameWallet": "Name your wallet (FR)",
+        "RenameContact": "Edit Contact Name (FR)",
     },
     "Loading": {
         "TakingTooLong": "Cela prend plus de temps que d'habitude. Vous pouvez retourner à l'accueil ou continuer à attendre.",
@@ -541,6 +554,10 @@ const translation = {
         "EmptyNameTitle": "Wallet name can't be empty (FR)",
         "EmptyNameDescription": "This is the name people see when connecting with you.\n\nPlease enter a wallet name. (FR)",
     },
+    "RenameContact": {
+        "ThisContactName": "This contact name is only displayed in your Contacts List. (FR)",
+        "ContactName": "Contact name (FR)",
+    },
     "NetInfo": {
         "NoInternetConnectionTitle": "Aucune connexion Internet",
         "NoInternetConnectionMessage": "Vous ne pouvez pas accéder aux services à l'aide de Bifold ou recevoir des informations d'identification tant que vous n'êtes pas de nouveau en ligne.\n\nS'il vous plait, vérifiez votre connexion internet.",
@@ -549,6 +566,11 @@ const translation = {
     },
     "Onboarding": {
         "SkipA11y": "Skip introduction to Aries Bifold (FR)",
+    },
+    "Preface": {
+        "PrimaryHeading": "Is this app for you? (FR)",
+        "Paragraph1": "Most people will not have a need for Aries Bifold because very few digital credentials are currently available. (FR)",
+        "Confirmed": "I have confirmed that this app is for me. (FR)",
     },
     "Chat": {
         "OpenPresentation": "Open presentation (FR)",

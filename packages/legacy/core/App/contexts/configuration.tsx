@@ -5,6 +5,7 @@ import { createContext, ReducerAction, useContext } from 'react'
 import { ProofRequestTemplate } from '../../verifier'
 import { EmptyListProps } from '../components/misc/EmptyList'
 import { RecordProps } from '../components/record/Record'
+import { Locales } from '../localization'
 import OnboardingPages from '../screens/OnboardingPages'
 import { ScanProps } from '../screens/Scan'
 import { PINSecurityParams } from '../types/security'
@@ -23,6 +24,7 @@ export interface ConfigurationContext {
   pages: typeof OnboardingPages
   splash: React.FC
   terms: React.FC
+  preface: React.FC
   homeHeaderView: React.FC
   homeFooterView: React.FC
   credentialListHeaderRight: React.FC
@@ -30,6 +32,7 @@ export interface ConfigurationContext {
   credentialEmptyList: React.FC<EmptyListProps>
   developer: React.FC
   OCABundleResolver: OCABundleResolverType
+  proofTemplateBaseUrl?: string
   scan: React.FC<ScanProps>
   useBiometry: React.FC
   record: React.FC<RecordProps>
@@ -38,10 +41,14 @@ export interface ConfigurationContext {
   settings: SettingSection[]
   customNotification: NotificationConfiguration
   useCustomNotifications: () => { total: number; notifications: any }
+  supportedLanguages: Locales[]
   connectionTimerDelay?: number
   autoRedirectConnectionToHome?: boolean
   proofRequestTemplates?: (useDevTemplates: boolean) => Array<ProofRequestTemplate>
   enableTours?: boolean
+  enableImplicitInvitations?: boolean
+  enableReuseConnections?: boolean
+  showPreface?: boolean
 }
 
 export const ConfigurationContext = createContext<ConfigurationContext>(null as unknown as ConfigurationContext)

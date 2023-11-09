@@ -2,11 +2,11 @@ import { useNavigation } from '@react-navigation/core'
 import { render } from '@testing-library/react-native'
 import React from 'react'
 
-import Settings from '../../App/screens/Settings'
-import configurationContext from '../contexts/configuration'
-import { ConfigurationContext } from '../../App/contexts/configuration'
-import { testIdWithKey } from '../../App/utils/testable'
 import { StoreContext } from '../../App'
+import { ConfigurationContext } from '../../App/contexts/configuration'
+import Settings from '../../App/screens/Settings'
+import { testIdWithKey } from '../../App/utils/testable'
+import configurationContext from '../contexts/configuration'
 import { testDefaultState } from '../contexts/store'
 
 jest.mock('@react-navigation/core', () => {
@@ -28,6 +28,18 @@ jest.mock('react-native-device-info', () => {
   }
 })
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: any) => key,
+    i18n: {
+      t: (key: any, props: Record<string, unknown>) => {
+        return `${key}_${props.context}`
+      },
+      language: 'en',
+    },
+  }),
+}))
+
 describe('Settings Screen', () => {
   beforeEach(() => {
     jest.clearAllMocks()
@@ -39,12 +51,19 @@ describe('Settings Screen', () => {
       preferences: {
         ...testDefaultState.preferences,
         developerModeEnabled: true,
-        walletName: "My Wallet"
-      }
-    } 
-    
+        walletName: 'My Wallet',
+      },
+    }
+
     const tree = render(
-      <StoreContext.Provider value={[customState, () => { return }]}>
+      <StoreContext.Provider
+        value={[
+          customState,
+          () => {
+            return
+          },
+        ]}
+      >
         <ConfigurationContext.Provider value={configurationContext}>
           <Settings navigation={useNavigation()} route={{} as any} />
         </ConfigurationContext.Provider>
@@ -60,19 +79,28 @@ describe('Settings Screen', () => {
         ...testDefaultState.preferences,
         developerModeEnabled: true,
         useConnectionInviterCapability: true,
-        walletName: "Wallet123"
-      }
-    } 
-    
+        walletName: 'Wallet123',
+      },
+    }
+
     const tree = render(
-      <StoreContext.Provider value={[customState, () => { return }]}>
+      <StoreContext.Provider
+        value={[
+          customState,
+          () => {
+            return
+          },
+        ]}
+      >
         <ConfigurationContext.Provider value={configurationContext}>
           <Settings navigation={useNavigation()} route={{} as any} />
         </ConfigurationContext.Provider>
       </StoreContext.Provider>
     )
+
     const walletName = tree.getByText('Wallet123')
-    const editButton = tree.getByTestId(testIdWithKey('Wallet123Action'))
+    const editButton = tree.getByTestId(testIdWithKey('EditWalletName'))
+
     expect(editButton).not.toBeNull()
     expect(walletName).not.toBeNull()
   })
@@ -83,19 +111,26 @@ describe('Settings Screen', () => {
       preferences: {
         ...testDefaultState.preferences,
         developerModeEnabled: true,
-        walletName: "My Wallet"
-      }
-    } 
+        walletName: 'My Wallet',
+      },
+    }
     const tree = render(
-      <StoreContext.Provider value={[customState, () => { return }]}>
+      <StoreContext.Provider
+        value={[
+          customState,
+          () => {
+            return
+          },
+        ]}
+      >
         <ConfigurationContext.Provider value={configurationContext}>
           <Settings navigation={useNavigation()} route={{} as any} />
         </ConfigurationContext.Provider>
       </StoreContext.Provider>
     )
-    
+
     const developerModeButton = tree.getByTestId(testIdWithKey('DeveloperOptions'))
-    expect(developerModeButton).not.toBeNull()    
+    expect(developerModeButton).not.toBeNull()
   })
 
   test('If mobile verifier is enabled, verifier options are shown', async () => {
@@ -104,11 +139,18 @@ describe('Settings Screen', () => {
       preferences: {
         ...testDefaultState.preferences,
         useVerifierCapability: true,
-        walletName: "My Wallet"
-      }
-    }    
+        walletName: 'My Wallet',
+      },
+    }
     const tree = render(
-      <StoreContext.Provider value={[customState, () => { return }]}>
+      <StoreContext.Provider
+        value={[
+          customState,
+          () => {
+            return
+          },
+        ]}
+      >
         <ConfigurationContext.Provider value={configurationContext}>
           <Settings navigation={useNavigation()} route={{} as any} />
         </ConfigurationContext.Provider>

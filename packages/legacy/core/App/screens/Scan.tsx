@@ -11,8 +11,8 @@ import Toast from 'react-native-toast-message'
 import NewQRView from '../components/misc/NewQRView'
 import QRScanner from '../components/misc/QRScanner'
 import CameraDisclosureModal from '../components/modals/CameraDisclosureModal'
-import LoadingModal from '../components/modals/LoadingModal'
 import { ToastType } from '../components/toast/BaseToast'
+import LoadingView from '../components/views/LoadingView'
 import { useStore } from '../contexts/store'
 import { BifoldError, QrCodeScanError } from '../types/error'
 import { ConnectStackParams, Screens, Stacks } from '../types/navigators'
@@ -32,15 +32,34 @@ const Scan: React.FC<ScanProps> = ({ navigation, route }) => {
   if (route?.params && route.params['defaultToConnect']) {
     defaultToConnect = route.params['defaultToConnect']
   }
+  let implicitInvitations = false
+  if (route?.params && route.params['implicitInvitations']) {
+    implicitInvitations = route.params['implicitInvitations']
+  }
+  let reuseConnections = false
+  if (route?.params && route.params['reuseConnections']) {
+    reuseConnections = route.params['reuseConnections']
+  }
 
   const handleInvitation = async (value: string): Promise<void> => {
     try {
-      const connectionRecord = await connectFromInvitation(value, agent)
-      navigation.getParent()?.navigate(Stacks.ConnectionStack, {
-        screen: Screens.Connection,
-        params: { connectionId: connectionRecord.id },
-      })
+      const receivedInvitation = await connectFromInvitation(value, agent, implicitInvitations, reuseConnections)
+      if (receivedInvitation?.connectionRecord?.id) {
+        // not connectionless
+        navigation.getParent()?.navigate(Stacks.ConnectionStack, {
+          screen: Screens.Connection,
+          params: { connectionId: receivedInvitation.connectionRecord.id },
+        })
+      } else {
+        //connectionless
+        navigation.navigate(Stacks.ConnectionStack as any, {
+          screen: Screens.Connection,
+          params: { threadId: receivedInvitation?.outOfBandRecord.outOfBandInvitation.threadId },
+        })
+      }
     } catch (err: unknown) {
+      // [Error: Connection does not have an ID]
+      // [AriesFrameworkError: An out of band record with invitation 05fe3693-2c12-4165-a3b6-370280ccd43b has already been received. Invitations should have a unique id.]
       try {
         // if scanned value is json -> pass into AFJ as is
         const json = getJson(value)
@@ -131,7 +150,7 @@ const Scan: React.FC<ScanProps> = ({ navigation, route }) => {
   }, [])
 
   if (loading) {
-    return <LoadingModal />
+    return <LoadingView />
   }
 
   if (showDisclosureModal) {
