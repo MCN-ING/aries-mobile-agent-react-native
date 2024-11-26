@@ -10,10 +10,10 @@ import Button from './components/buttons/Button'
 import defaultIndyLedgers from './configs/ledgers/indy'
 import { LocalStorageKeys, PINRules } from './constants'
 import { TOKENS, Container, TokenMapping } from './container-api'
-import { DispatchAction, ReducerAction } from './contexts/reducers/store'
 import { defaultState } from './contexts/store'
 import { useNotifications } from './hooks/notifications'
 import { IHistoryManager } from './modules/history'
+import { DispatchAction, ReducerAction } from './contexts/reducers/store'
 import HistoryManager from './modules/history/context/historyManager'
 import OnboardingStack from './navigators/OnboardingStack'
 import { DefaultScreenOptionsDictionary } from './navigators/defaultStackOptions'
@@ -46,6 +46,7 @@ import NoNewUpdates from './components/misc/NoNewUpdates'
 import PINCreateHeader from './components/misc/PINCreateHeader'
 import { PersistentStorage } from './services/storage'
 import { Config } from './types/config'
+import { ScreenOptions } from './types/ScreenOptions'
 import { Locales } from './localization'
 import ContactListItem from './components/listItems/ContactListItem'
 import ContactCredentialListItem from './components/listItems/ContactCredentialListItem'
@@ -69,7 +70,12 @@ export const defaultConfig: Config = {
     enableCredentialList: false,
   },
 }
+
+const defaultScreenOptions: ScreenOptions = {};
+
+
 export class MainContainer implements Container {
+  
   public static readonly TOKENS = TOKENS
   private _container: DependencyContainer
   private log?: BaseLogger
@@ -115,7 +121,7 @@ export class MainContainer implements Container {
     })
     this._container.registerInstance(TOKENS.NOTIFICATIONS_LIST_ITEM, NotificationListItem)
     this._container.registerInstance(TOKENS.CONFIG, defaultConfig)
-    this._container.registerInstance(TOKENS.COMPONENT_CRED_LIST_HEADER_RIGHT, () => null)
+    this._container.registerInstance(TOKENS.SCREEN_OPTIONS,defaultScreenOptions)
     this._container.registerInstance(TOKENS.COMPONENT_CRED_LIST_OPTIONS, () => null)
     this._container.registerInstance(TOKENS.COMPONENT_CRED_LIST_FOOTER, () => null)
     this._container.registerInstance(TOKENS.COMPONENT_HOME_HEADER, HomeHeaderView)

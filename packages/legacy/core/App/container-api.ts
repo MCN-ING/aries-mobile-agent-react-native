@@ -23,6 +23,8 @@ import { CredentialListFooterProps } from './types/credential-list-footer'
 import { ContactListItemProps } from './components/listItems/ContactListItem'
 import { ContactCredentialListItemProps } from './components/listItems/ContactCredentialListItem'
 import { InlineErrorConfig } from './types/error'
+import { ScreenOptions } from 'types/ScreenOptions'
+
 
 export type FN_ONBOARDING_DONE = (
   dispatch: React.Dispatch<ReducerAction<unknown>>,
@@ -49,6 +51,7 @@ export const SCREEN_TOKENS = {
   SCREEN_SCAN: 'screen.scan',
   SCREEN_USE_BIOMETRY: 'screen.use-biometry',
   SCREEN_PIN_EXPLAINER: 'screen.pin-explainer',
+  SCREEN_OPTIONS: 'screen.options'
 } as const
 
 export const NAV_TOKENS = {
@@ -77,7 +80,6 @@ export const STACK_TOKENS = {
 
 export const FN_TOKENS = {
   FN_ONBOARDING_DONE: 'fn.onboardingDone',
-  COMPONENT_CRED_LIST_HEADER_RIGHT: 'fn.credListHeaderRight',
   COMPONENT_CRED_LIST_OPTIONS: 'fn.credListOptions',
   COMPONENT_CRED_LIST_FOOTER: 'fn.credListFooter',
 } as const
@@ -178,7 +180,7 @@ export type TokenMapping = {
   [TOKENS.FN_LOAD_HISTORY]: FN_HISTORY_MANAGER
   [TOKENS.HISTORY_ENABLED]: boolean
   [TOKENS.CONFIG]: Config
-  [TOKENS.COMPONENT_CRED_LIST_HEADER_RIGHT]: React.FC
+  [TOKENS.SCREEN_OPTIONS]: ScreenOptions
   [TOKENS.COMPONENT_CRED_LIST_OPTIONS]: React.FC
   [TOKENS.COMPONENT_CRED_LIST_FOOTER]: React.FC<CredentialListFooterProps>
   [TOKENS.COMPONENT_HOME_HEADER]: React.FC
