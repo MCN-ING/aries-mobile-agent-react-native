@@ -134,13 +134,9 @@ const CredentialCard11: React.FC<CredentialCard11Props> = ({
   const navigation = useNavigation()
 
   const getSecondaryBackgroundColor = () => {
-    if (proof) {
-      return overlay.brandingOverlay?.primaryBackgroundColor
-    } else {
-      return overlay.brandingOverlay?.backgroundImageSlice
-        ? 'rgba(0, 0, 0, 0)'
-        : overlay.brandingOverlay?.secondaryBackgroundColor
-    }
+    return overlay.brandingOverlay?.backgroundImageSlice
+      ? 'rgba(0, 0, 0, 0)'
+      : overlay.brandingOverlay?.secondaryBackgroundColor
   }
 
   const styles = StyleSheet.create({
