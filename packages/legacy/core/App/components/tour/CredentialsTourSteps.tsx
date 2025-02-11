@@ -1,39 +1,47 @@
 import * as React from 'react'
-import { useTranslation } from 'react-i18next'
 import { Text } from 'react-native'
 
-import { useTheme } from '../../contexts/theme'
 import { RenderProps, TourStep } from '../../contexts/tour/tour-context'
 
 import { TourBox } from './TourBox'
+import useCommonTourHooks from '../../hooks/common-tour'
+import { DispatchAction } from '../../contexts/reducers/store'
+import { IColorPallet, ITextTheme } from '../../theme'
+
+const renderTextContent = (content: string, TextTheme: ITextTheme, ColorPallet: IColorPallet) => (
+  <Text
+    style={{
+      ...TextTheme.normal,
+      color: ColorPallet.notification.infoText,
+    }}
+    allowFontScaling={false}
+  >
+    {content}
+  </Text>
+)
 
 export const credentialsTourSteps: TourStep[] = [
   {
     Render: (props: RenderProps) => {
       const { currentTour, currentStep, next, stop, previous } = props
-      const { t } = useTranslation()
-      const { ColorPallet, TextTheme } = useTheme()
+      const { t, ColorPallet, TextTheme, endTour } = useCommonTourHooks(
+        stop,
+        DispatchAction.UPDATE_SEEN_CREDENTIALS_TOUR
+      )
+
       return (
         <TourBox
           title={t('Tour.AddCredentials')}
           hideLeft
           rightText={t('Tour.Done')}
-          onRight={stop}
+          onRight={endTour}
           currentTour={currentTour}
           currentStep={currentStep}
           previous={previous}
-          stop={stop}
+          stop={endTour}
           next={next}
         >
-          <Text
-            style={{
-              ...TextTheme.normal,
-              color: ColorPallet.notification.infoText,
-            }}
-            allowFontScaling={false}
-          >
-            {t('Tour.AddCredentialsDescription')}
-          </Text>
+          {renderTextContent(t('Tour.AddCredentialsDescription'), TextTheme, ColorPallet)}
         </TourBox>
       )
     },

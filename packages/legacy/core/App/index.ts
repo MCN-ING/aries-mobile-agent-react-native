@@ -55,6 +55,7 @@ import { CredentialListFooterProps } from './types/credential-list-footer'
 import { OpenIDCredentialRecordProvider } from './modules/openid/context/OpenIDCredentialRecordProvider'
 import { defaultConfig, defaultHistoryEventsLogger } from './container-impl'
 import useInitializeAgent from './hooks/initialize-agent'
+import useCommonTourHooks from './hooks/common-tour'
 import { DefaultScreenLayoutOptions } from './navigators/defaultLayoutOptions'
 
 export * from './navigators'
@@ -181,6 +182,7 @@ export {
   NotificationListItem,
   useDefaultStackOptions,
   useInitializeAgent,
+  useCommonTourHooks,
   Splash,
   Developer,
   Terms,

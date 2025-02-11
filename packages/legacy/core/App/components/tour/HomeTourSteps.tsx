@@ -1,40 +1,43 @@
 import * as React from 'react'
-import { useTranslation } from 'react-i18next'
 import { Text } from 'react-native'
-
-import { useTheme } from '../../contexts/theme'
 import { RenderProps, TourStep } from '../../contexts/tour/tour-context'
-
 import { TourBox } from './TourBox'
+import useCommonTourHooks from '../../hooks/common-tour'
+import { DispatchAction } from '../../contexts/reducers/store'
+import { IColorPallet, ITextTheme } from '../../theme'
+
+const renderTextContent = (content: string, TextTheme: ITextTheme, ColorPallet: IColorPallet) => (
+  <Text
+    style={{
+      ...TextTheme.normal,
+      color: ColorPallet.notification.infoText,
+    }}
+    allowFontScaling={false}
+  >
+    {content}
+  </Text>
+)
 
 export const homeTourSteps: TourStep[] = [
   {
     Render: (props: RenderProps) => {
       const { currentTour, currentStep, next, stop, previous } = props
-      const { t } = useTranslation()
-      const { ColorPallet, TextTheme } = useTheme()
+      const { t, ColorPallet, TextTheme, endTour } = useCommonTourHooks(stop, DispatchAction.UPDATE_SEEN_HOME_TOUR)
+
       return (
         <TourBox
           title={t('Tour.AddAndShare')}
           leftText={t('Tour.Skip')}
           rightText={t('Tour.Next')}
-          onLeft={stop}
+          onLeft={endTour}
           onRight={next}
           currentTour={currentTour}
           currentStep={currentStep}
           previous={previous}
-          stop={stop}
+          stop={endTour}
           next={next}
         >
-          <Text
-            style={{
-              ...TextTheme.normal,
-              color: ColorPallet.notification.infoText,
-            }}
-            allowFontScaling={false}
-          >
-            {t('Tour.AddAndShareDescription')}
-          </Text>
+          {renderTextContent(t('Tour.AddAndShareDescription'), TextTheme, ColorPallet)}
         </TourBox>
       )
     },
@@ -42,8 +45,8 @@ export const homeTourSteps: TourStep[] = [
   {
     Render: (props: RenderProps) => {
       const { currentTour, currentStep, next, stop, previous } = props
-      const { t } = useTranslation()
-      const { ColorPallet, TextTheme } = useTheme()
+      const { t, ColorPallet, TextTheme, endTour } = useCommonTourHooks(stop, DispatchAction.UPDATE_SEEN_HOME_TOUR)
+
       return (
         <TourBox
           title={t('Tour.Notifications')}
@@ -54,18 +57,10 @@ export const homeTourSteps: TourStep[] = [
           currentTour={currentTour}
           currentStep={currentStep}
           next={next}
-          stop={stop}
+          stop={endTour}
           previous={previous}
         >
-          <Text
-            style={{
-              ...TextTheme.normal,
-              color: ColorPallet.notification.infoText,
-            }}
-            allowFontScaling={false}
-          >
-            {t('Tour.NotificationsDescription')}
-          </Text>
+          {renderTextContent(t('Tour.NotificationsDescription'), TextTheme, ColorPallet)}
         </TourBox>
       )
     },
@@ -73,30 +68,22 @@ export const homeTourSteps: TourStep[] = [
   {
     Render: (props: RenderProps) => {
       const { currentTour, currentStep, next, stop, previous } = props
-      const { t } = useTranslation()
-      const { ColorPallet, TextTheme } = useTheme()
+      const { t, ColorPallet, TextTheme, endTour } = useCommonTourHooks(stop, DispatchAction.UPDATE_SEEN_HOME_TOUR)
+
       return (
         <TourBox
           title={t('Tour.YourCredentials')}
           leftText={t('Tour.Back')}
           rightText={t('Tour.Done')}
           onLeft={previous}
-          onRight={stop}
+          onRight={endTour}
           currentTour={currentTour}
           currentStep={currentStep}
           next={next}
-          stop={stop}
+          stop={endTour}
           previous={previous}
         >
-          <Text
-            style={{
-              ...TextTheme.normal,
-              color: ColorPallet.notification.infoText,
-            }}
-            allowFontScaling={false}
-          >
-            {t('Tour.YourCredentialsDescription')}
-          </Text>
+          {renderTextContent(t('Tour.YourCredentialsDescription'), TextTheme, ColorPallet)}
         </TourBox>
       )
     },

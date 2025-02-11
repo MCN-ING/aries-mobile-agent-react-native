@@ -3,12 +3,11 @@ import { CredentialExchangeRecord, CredentialState, W3cCredentialRecord } from '
 import { useCredentialByState } from '@credo-ts/react-hooks'
 import { useNavigation, useIsFocused } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, View } from 'react-native'
 
 import CredentialCard from '../components/misc/CredentialCard'
-import { DispatchAction } from '../contexts/reducers/store'
 import { useStore } from '../contexts/store'
 import { useTheme } from '../contexts/theme'
 import { useTour } from '../contexts/tour/tour-context'
@@ -19,6 +18,8 @@ import { CredentialListFooterProps } from '../types/credential-list-footer'
 import { useOpenIDCredentials } from '../modules/openid/context/OpenIDCredentialRecordProvider'
 import { GenericCredentialExchangeRecord } from '../types/credentials'
 import { CredentialErrors } from '../components/misc/CredentialCard11'
+
+import { ImportantForAccessibility } from '../types/accessibility'
 import { BaseTourID } from '../types/tour'
 
 const ListCredentials: React.FC = () => {
@@ -51,7 +52,7 @@ const ListCredentials: React.FC = () => {
 
   const CredentialEmptyList = credentialEmptyList as React.FC<EmptyListProps>
   const CredentialListFooter = credentialListFooter as React.FC<CredentialListFooterProps>
-
+  const [hideElements, setHideElements] = useState<ImportantForAccessibility>('auto')
   // Filter out hidden credentials when not in dev mode
   if (!store.preferences.developerModeEnabled) {
     credentials = credentials.filter((r) => {
@@ -64,11 +65,10 @@ const ListCredentials: React.FC = () => {
     const shouldShowTour = enableToursConfig && store.tours.enableTours && !store.tours.seenCredentialsTour
 
     if (shouldShowTour && screenIsFocused) {
+      setHideElements('no-hide-descendants')
       start(BaseTourID.CredentialsTour)
-      dispatch({
-        type: DispatchAction.UPDATE_SEEN_CREDENTIALS_TOUR,
-        payload: [true],
-      })
+    } else {
+      setHideElements('auto')
     }
   }, [enableToursConfig, store.tours.enableTours, store.tours.seenCredentialsTour, screenIsFocused, start, dispatch])
 
@@ -99,6 +99,7 @@ const ListCredentials: React.FC = () => {
     <View>
       <FlatList
         style={{ backgroundColor: ColorPallet.brand.primaryBackground }}
+        importantForAccessibility={hideElements}
         data={credentials.sort((a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf())}
         keyExtractor={(credential) => credential.id}
         renderItem={({ item: credential, index }) => {

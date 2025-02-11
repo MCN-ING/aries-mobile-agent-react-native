@@ -18,7 +18,6 @@ import { EventTypes } from '../constants'
 import { TOKENS, useServices } from '../container-api'
 import { useAnimatedComponents } from '../contexts/animated-components'
 import { useNetwork } from '../contexts/network'
-import { DispatchAction } from '../contexts/reducers/store'
 import { useStore } from '../contexts/store'
 import { useTheme } from '../contexts/theme'
 import { useTour } from '../contexts/tour/tour-context'
@@ -33,6 +32,7 @@ import { getCredentialIdentifiers, isValidAnonCredsCredential } from '../utils/c
 import { useCredentialConnectionLabel } from '../utils/helpers'
 import { buildFieldsFromAnonCredsCredential } from '../utils/oca'
 import { testIdWithKey } from '../utils/testable'
+import { ImportantForAccessibility } from '../types/accessibility'
 
 import CredentialOfferAccept from './CredentialOfferAccept'
 import { BaseTourID } from '../types/tour'
@@ -67,10 +67,12 @@ const CredentialOffer: React.FC<CredentialOfferProps> = ({ navigation, credentia
   const [buttonsVisible, setButtonsVisible] = useState(true)
   const [acceptModalVisible, setAcceptModalVisible] = useState(false)
   const [declineModalVisible, setDeclineModalVisible] = useState(false)
+  const [hideElements, setHideElements] = useState<ImportantForAccessibility>('auto')
+
   const [overlay, setOverlay] = useState<CredentialOverlay<BrandingOverlay>>({ presentationFields: [] })
   const credential = useCredentialById(credentialId)
   const credentialConnectionLabel = useCredentialConnectionLabel(credential)
-  const [store, dispatch] = useStore()
+  const [store] = useStore()
   const { start } = useTour()
   const screenIsFocused = useIsFocused()
   const goalCode = useOutOfBandByConnectionId(credential?.connectionId ?? '')?.outOfBandInvitation?.goalCode
@@ -93,20 +95,12 @@ const CredentialOffer: React.FC<CredentialOfferProps> = ({ navigation, credentia
   useEffect(() => {
     const shouldShowTour = enableToursConfig && store.tours.enableTours && !store.tours.seenCredentialOfferTour
     if (shouldShowTour && screenIsFocused) {
+      setHideElements('no-hide-descendants')
       start(BaseTourID.CredentialOfferTour)
-      dispatch({
-        type: DispatchAction.UPDATE_SEEN_CREDENTIAL_OFFER_TOUR,
-        payload: [true],
-      })
+    } else {
+      setHideElements('auto')
     }
-  }, [
-    enableToursConfig,
-    store.tours.enableTours,
-    store.tours.seenCredentialOfferTour,
-    screenIsFocused,
-    start,
-    dispatch,
-  ])
+  }, [enableToursConfig, store.tours.enableTours, store.tours.seenCredentialOfferTour, screenIsFocused, start])
 
   useEffect(() => {
     if (!agent || !credential) {
@@ -306,7 +300,7 @@ const CredentialOffer: React.FC<CredentialOfferProps> = ({ navigation, credentia
   }
 
   return (
-    <SafeAreaView style={{ flexGrow: 1 }} edges={['bottom', 'left', 'right']}>
+    <SafeAreaView style={{ flexGrow: 1 }} edges={['bottom', 'left', 'right']} importantForAccessibility={hideElements}>
       <Record fields={overlay.presentationFields || []} header={header} footer={footer} />
       <CredentialOfferAccept visible={acceptModalVisible} credentialId={credentialId} />
       <CommonRemoveModal
